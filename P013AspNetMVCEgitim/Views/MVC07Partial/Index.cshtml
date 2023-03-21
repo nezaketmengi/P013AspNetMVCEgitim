@@ -1,0 +1,29 @@
+﻿@model Kullanici
+@{
+}
+<h1>
+    MVC Partial Kullanımı
+</h1>
+<p>
+    Partial parça anlamına gelir ve sayfadaki kodlar büyüdükçe sayfayı parçalara ayırıp daha kolay yönetebilmemizi sağlar.
+</p>
+
+<partial name="_PartialTest" />
+
+<h3>Partialde Model Kullanımı</h3>
+
+<partial name="_PartialModelKullanimi" />
+
+<h3>Partialin Asenkron Çağrılması</h3>
+@*Anasayfada yer alan veriler sırası ile yüklensin istersek senkron, yani örnek olarak slider yüklenmeden ürünler veya altındaki banner vb. alanlar sayfaya yüklenmesin. Slider tam olarak yüklendikten sonra diğer veriler yüklenir. Asenkron ise tam tersi, her bölüm kendi içerisinde yüklenir yani ürünlerin siteye yüklenmesi için slider ın yüklenmesine gerek yoktur.*@
+@await Html.PartialAsync("_PartialModelKullanimi")
+
+<hr />
+
+<h3>Partiala Model Gönderme</h3>
+
+<partial name="_PartialModelKullanimi" model="Model" />
+
+<h3>Partialin Asenkron Çağrılması ve Model Gönderme</h3>
+
+@await Html.PartialAsync("_PartialModelKullanimi", Model)
